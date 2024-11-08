@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,35 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Profile
+    Route::get('/profile',
+        [ProfileController::class, 'edit']
+    )->name('profile.edit');
+
+    Route::patch('/profile',
+        [ProfileController::class, 'update']
+    )->name('profile.update');
+
+    Route::delete('/profile',
+        [ProfileController::class, 'destroy']
+    )->name('profile.destroy');
+
+    // Landing Pages
+    Route::get('/dashboard/landing-pages',
+        [LandingPageController::class, 'index']
+    )->name('landing-pages.index');
+
+    Route::get('/dashboard/landing-pages/create',
+        [LandingPageController::class, 'create']
+    )->name('landing-pages.create');
+
+    Route::get('/dashboard/landing-pages/{id}/edit',
+        [LandingPageController::class, 'edit']
+    )->name('landing-pages.edit');
+
 });
+
+// Route::resource('landing-pages', LandingPageController::class);
 
 require __DIR__.'/auth.php';
