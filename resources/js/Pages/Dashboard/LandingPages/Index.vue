@@ -5,27 +5,34 @@
                 Dashboard / Landing Pages
             </h2>
         </template>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="landingPage in landingPages" :key="landingPage.id">
-                        <td>{{ landingPage.title }}</td>
-                        <td>{{ landingPage.description }}</td>
-                        <td>
-                            <Link :href="route('landing-pages.show', landingPage.id)">Show</Link>
-                            <Link :href="route('landing-pages.edit', landingPage.id)">Edit</Link>
-                            <Link @click="destroy(landingPage.id)" href="#">Delete</Link>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="py-12">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="landingPage in landingPages" :key="landingPage.id">
+                                    <td>{{ landingPage.title }}</td>
+                                    <td>{{ landingPage.description }}</td>
+                                    <td>
+                                        <Link :href="route('landing-pages.show', landingPage.id)">Show</Link>
+                                        <Link :href="route('landing-pages.edit', landingPage.id)">Edit</Link>
+                                        <Link @click="destroy(landingPage.id)" href="#">Delete</Link>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>
